@@ -5,6 +5,12 @@ import { useEffect, useState } from "react";
 import HeadContent from "../../components/Head";
 import styles from "../../styles/Login.module.scss";
 
+//本番環境設定
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.NEXT_PUBLIC_API_URL;
+
 const Login = () => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
@@ -14,7 +20,7 @@ const Login = () => {
 
   const handleClick = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/api/login", {
+      const res = await axios.post(`${API_URL}/login`, {
         username,
         password,
       });

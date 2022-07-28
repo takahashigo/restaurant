@@ -2,6 +2,12 @@ import axios from "axios";
 import { useState } from "react";
 import styles from "../styles/Add.module.scss";
 
+//本番環境設定
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.NEXT_PUBLIC_API_URL;
+
 const Add = ({ setClose }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
@@ -43,8 +49,8 @@ const Add = ({ setClose }) => {
         extraOptions,
         img: url,
       };
-      
-      await axios.post("http://localhost:3000/api/products",newProduct);
+
+      await axios.post(`${API_URL}/products`, newProduct);
       setClose(true);
     } catch (err) {
       console.log(err);

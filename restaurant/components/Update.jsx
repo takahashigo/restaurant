@@ -2,6 +2,13 @@ import styles from "../styles/Update.module.scss";
 import axios from "axios";
 import { useState } from "react";
 
+//本番環境設定
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.NEXT_PUBLIC_API_URL;
+
+
 const Update = ({ setClose, pizza }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
@@ -31,7 +38,7 @@ const Update = ({ setClose, pizza }) => {
     data.append("upload_preset", "uploads");
     try {
       const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dzrcidiw7/image/upload",
+        process.env.NEXT_PUBLIC_CLOUD_API,
         data
       );
 
@@ -45,7 +52,7 @@ const Update = ({ setClose, pizza }) => {
       };
 
       await axios.put(
-        `http://localhost:3000/api/products/${pizza._id}`,
+        `${API_URL}/products/${pizza._id}`,
         updatedProduct
       );
       setClose(true);
