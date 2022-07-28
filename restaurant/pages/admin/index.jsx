@@ -3,9 +3,14 @@ import { parseCookies } from "nookies";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "../../styles/Admin.module.scss";
-import Add from "../../components/Add";
 import Update from "../../components/Update";
 import HeadContent from "../../components/Head";
+
+//本番環境設定
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.NEXT_PUBLIC_API_URL;
 
 const Index = ({ products, orders }) => {
   const [pizzaList, setPizzaList] = useState(products);
@@ -17,9 +22,7 @@ const Index = ({ products, orders }) => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(
-        `http://localhost:3000/api/products/${id}`
-      );
+      const res = await axios.delete(`${API_URL}/products/${id}`);
       setPizzaList((prev) => prev.filter((pizza) => pizza._id !== id));
     } catch (err) {
       console.log(err);
@@ -31,7 +34,7 @@ const Index = ({ products, orders }) => {
     const currentStatus = item.status;
 
     try {
-      const res = await axios.put(`http://localhost:3000/api/orders/${id}`, {
+      const res = await axios.put(`${API_URL}/orders/${id}`, {
         status: currentStatus + 1,
       });
       setOrderList([
@@ -45,7 +48,7 @@ const Index = ({ products, orders }) => {
 
   return (
     <div className={styles.container}>
-      <HeadContent title="管理者画面"/>
+      <HeadContent title="管理者画面" />
       <div className={styles.item}>
         <h1 className={styles.title}>商品一覧</h1>
         <table className={styles.table}>
@@ -136,6 +139,11 @@ const Index = ({ products, orders }) => {
 };
 
 export const getServerSideProps = async (context) => {
+  //本番環境設定
+  const API_URL =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_VERCEL_URL
+      : process.env.NEXT_PUBLIC_API_URL;
   const myCookie = parseCookies(context) || "";
 
   if (myCookie.token !== process.env.NEXT_PUBLIC_TOKEN) {
@@ -147,8 +155,8 @@ export const getServerSideProps = async (context) => {
     };
   }
 
-  const ProductsRes = await axios.get("http://localhost:3000/api/products/");
-  const OrderRes = await axios.get("http://localhost:3000/api/orders/");
+  const ProductsRes = await axios.get(`${API_URL}/products/`);
+  const OrderRes = await axios.get(`${API_URL}/orders/`);
 
   return {
     props: {

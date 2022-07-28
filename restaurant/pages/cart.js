@@ -9,6 +9,11 @@ import { deleteProduct, reset } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import HeadContent from "../components/Head";
 
+//本番環境設定
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.NEXT_PUBLIC_API_URL;
 const KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
 
 const Cart = () => {
@@ -25,7 +30,7 @@ const Cart = () => {
   };
 
   const createOrder = async (data) => {
-    const res2 = await axios.post("http://localhost:3000/api/orders/", data);
+    const res2 = await axios.post(`${API_URL}/orders/`, data);
     res2.status === 201 && router.push("/order/" + res2.data._id);
     dispatch(reset());
   };
@@ -34,17 +39,15 @@ const Cart = () => {
     dispatch(deleteProduct(product));
   };
 
-
-
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const res = await axios.post("http://localhost:3000/api/checkout", {
+        const res = await axios.post(`${API_URL}/checkout`, {
           tokenId: stripeToken.id,
           amount: cart.total,
         });
-        console.log(res.data);
-        console.log(res.status);
+        // console.log(res.data);
+        // console.log(res.status);
         const { amount } = res.data;
         const { name } = res.data.billing_details;
         const { city, line1 } = res.data.billing_details.address;
@@ -65,7 +68,7 @@ const Cart = () => {
 
   return (
     <div className={styles.container}>
-      <HeadContent title="カート"/>
+      <HeadContent title="カート" />
       <div className={styles.left}>
         <table className={styles.table}>
           <thead className={styles.thead}>
@@ -116,7 +119,12 @@ const Cart = () => {
                   </span>
                 </td>
                 <td className={styles.td}>
-                  <button className={styles.deleteButton} onClick={() => handleDelete(product)}>削除</button>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => handleDelete(product)}
+                  >
+                    削除
+                  </button>
                 </td>
               </tr>
             ))}

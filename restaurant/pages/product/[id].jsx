@@ -118,8 +118,14 @@ const ProductPage = ({ pizza }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
+  //本番環境設定
+  const API_URL =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_VERCEL_URL
+      : process.env.NEXT_PUBLIC_API_URL;
+
   const res = await axios.get(
-    `http://localhost:3000/api/products/${params.id}`
+    `${API_URL}/products/${params.id}`
   );
 
   return {
@@ -131,7 +137,7 @@ export const getServerSideProps = async ({ params }) => {
 
 export default ProductPage;
 
-// 商品ページはSSGを採用する
+// 商品ページはSSGを採用する場合
 // export const getStaticPaths = async () => {
 //   const res = await axios.get("http://localhost:3000/api/products/");
 //   console.log(res.data);

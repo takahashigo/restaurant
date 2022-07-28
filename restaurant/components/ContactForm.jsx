@@ -3,6 +3,13 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../styles/ContactForm.module.scss";
 
+//本番環境設定
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.NEXT_PUBLIC_API_URL;
+
+
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,7 +23,7 @@ const ContactForm = () => {
       content,
     };
     try {
-      const res = await axios.post("http://localhost:3000/api/email", data);
+      const res = await axios.post(`${API_URL}/email`, data);
       router.push("/success");
     } catch (err) {
       console.log(err);

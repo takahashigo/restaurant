@@ -1,6 +1,4 @@
 import axios from "axios";
-import Head from "next/head";
-import Image from "next/image";
 import { parseCookies } from "nookies";
 import { useState } from "react";
 // import { useDispatch } from "react-redux";
@@ -31,7 +29,7 @@ export default function Home({ pizzaList, admin }) {
 
   return (
     <div className={styles.container}>
-      <HeadContent title="ホーム"/>
+      <HeadContent title="ホーム" />
       <Featured />
       {admin && <AddButton close={close} setClose={setClose} />}
       <PizzaList pizzaList={pizzaList} />
@@ -41,6 +39,12 @@ export default function Home({ pizzaList, admin }) {
 }
 
 export const getServerSideProps = async (context) => {
+  //本番環境設定
+  const API_URL =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_VERCEL_URL
+      : process.env.NEXT_PUBLIC_API_URL;
+
   const myCookie = parseCookies(context) || "";
   let admin = false;
 
@@ -48,7 +52,7 @@ export const getServerSideProps = async (context) => {
     admin = true;
   }
 
-  const res = await axios.get("http://localhost:3000/api/products/");
+  const res = await axios.get(`${API_URL}/products/`);
 
   return {
     props: {
