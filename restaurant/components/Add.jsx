@@ -28,9 +28,10 @@ const Add = ({ setClose }) => {
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "uploads");
+    console.log(process.env.NEXT_PUBLIC_CLOUD_API);
     try {
       const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dzrcidiw7/image/upload",
+        process.env.NEXT_PUBLIC_CLOUD_API,
         data
       );
 
@@ -42,7 +43,7 @@ const Add = ({ setClose }) => {
         extraOptions,
         img: url,
       };
-
+      
       await axios.post("http://localhost:3000/api/products",newProduct);
       setClose(true);
     } catch (err) {

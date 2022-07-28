@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: calc(100vh - 100px);
+  height: auto;
   padding: 50px;
   display: flex;
   @media screen and (max-width: 480px) {
