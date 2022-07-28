@@ -1,0 +1,43 @@
+.container {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  cursor: pointer;
+}
+@media screen and (max-width: 480px) {
+  .container {
+    width: 100%;
+  }
+}
+.container .title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d1411e;
+}
+@media screen and (max-width: 480px) {
+  .container .title {
+    font-size: 30px;
+  }
+}
+.container .price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+}
+@media screen and (max-width: 480px) {
+  .container .price {
+    font-size: 24px;
+  }
+}
+.container .desc {
+  text-align: center;
+  color: #777;
+}
+@media screen and (max-width: 480px) {
+  .container .desc {
+    font-size: 24px;
+  }
+}/*# sourceMappingURL=PizzaCard.module.css.map */

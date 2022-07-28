@@ -1,0 +1,56 @@
+.container {
+  height: calc(100vh - 100px);
+  background-color: #222;
+  display: flex;
+}
+@media screen and (max-width: 480px) {
+  .container {
+    height: auto;
+    text-align: center;
+  }
+}
+.container .item {
+  flex: 1;
+  position: relative;
+  display: flex;
+}
+@media screen and (max-width: 480px) {
+  .container .item:nth-child(1) {
+    display: none;
+  }
+}
+.container .item:last-child {
+  flex: 2;
+  padding: 50px;
+  justify-content: space-between;
+}
+@media screen and (max-width: 480px) {
+  .container .item:last-child {
+    flex-direction: column;
+  }
+}
+.container .item .card {
+  flex: 1;
+  padding: 0px 20px;
+  text-align: center;
+}
+.container .item .card .title {
+  font-size: 18px;
+  color: #b7903c;
+}
+@media screen and (max-width: 480px) {
+  .container .item .card .title {
+    font-size: 30px;
+  }
+}
+.container .item .card .text {
+  color: lightgray;
+}
+@media screen and (max-width: 480px) {
+  .container .item .card .text {
+    font-size: 20px;
+  }
+}
+.container .item .card .motto {
+  color: rgb(211, 211, 211);
+}/*# sourceMappingURL=Footer.module.css.map */

@@ -4,9 +4,11 @@ import Product from "../../../models/Product";
 import dbConnect from "../../../utils/db";
 
 export default async function handler(req, res) {
-  const { method } = req;
+  const { method, cookies } = req;
 
-  dbConnect();
+  const token = cookies.token;
+
+  await dbConnect();
 
   if (method === "GET") {
     try {
@@ -18,6 +20,9 @@ export default async function handler(req, res) {
   }
 
   if (method === "POST") {
+    if (!token || token !== process.env.NEXT_PUBLIC_TOKEN){
+      return res.status(401).json("認証に失敗しました");
+    }
     try {
       const product = await Product.create(req.body);
       res.status(201).json(product);

@@ -1,0 +1,150 @@
+.container {
+  height: calc(100vh - 100px);
+  display: flex;
+}
+@media screen and (max-width: 480px) {
+  .container {
+    height: auto;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+}
+.container .left {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .left .imgContainer {
+  width: 80%;
+  height: 80%;
+  position: relative;
+}
+@media screen and (max-width: 480px) {
+  .container .left .imgContainer {
+    width: 70vw;
+    height: 70vw;
+  }
+}
+.container .right {
+  flex: 1;
+  padding: 20px;
+}
+@media screen and (max-width: 480px) {
+  .container .right .title {
+    margin: 5px;
+  }
+}
+.container .right .price {
+  color: #d1411e;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid #d1411e;
+}
+.container .right .sizes {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 480px) {
+  .container .right .sizes {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+.container .right .sizes .size {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+}
+.container .right .sizes .size:nth-child(2) {
+  width: 40px;
+  height: 40px;
+}
+.container .right .sizes .size:last-child {
+  width: 50px;
+  height: 50px;
+}
+.container .right .sizes .size .numberS,
+.container .right .sizes .size .numberM,
+.container .right .sizes .size .numberL {
+  position: absolute;
+  bottom: -25px;
+  color: teal;
+}
+.container .right .sizes .size .numberS {
+  left: -5px;
+}
+.container .right .sizes .size .numberM {
+  left: -8px;
+}
+.container .right .sizes .size .numberL {
+  left: 6px;
+}
+.container .right .chooseWrapper {
+  margin-top: 40px;
+}
+.container .right .chooseWrapper .ingredients {
+  display: flex;
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 480px) {
+  .container .right .chooseWrapper .ingredients {
+    flex-direction: column;
+  }
+}
+.container .right .chooseWrapper .ingredients .option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+@media screen and (max-width: 480px) {
+  .container .right .chooseWrapper .ingredients .option {
+    justify-content: flex-start;
+    margin: 10px;
+    font-size: 18px;
+  }
+}
+.container .right .chooseWrapper .ingredients .option .checkbox {
+  width: 20px;
+  height: 20px;
+}
+@media screen and (max-width: 480px) {
+  .container .right .chooseWrapper .ingredients .option .checkbox {
+    width: 25px;
+    height: 25px;
+  }
+}
+.container .right .chooseWrapper .quantity {
+  width: 50px;
+  height: 30px;
+  text-align: center;
+}
+@media screen and (max-width: 480px) {
+  .container .right .chooseWrapper .quantity {
+    height: 50px;
+    padding: 10px 20px;
+  }
+}
+.container .right .chooseWrapper .button {
+  height: 30px;
+  margin-left: 10px;
+  background-color: #d1411e;
+  color: white;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0px 15px;
+}
+@media screen and (max-width: 480px) {
+  .container .right .chooseWrapper .button {
+    height: 50px;
+    padding: 10px 20px;
+  }
+}/*# sourceMappingURL=Product.module.css.map */

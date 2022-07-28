@@ -1,8 +1,11 @@
+import axios from "axios";
 import Image from "next/image";
+import { useState } from "react";
+import HeadContent from "../../components/Head";
 import styles from "../../styles/Order.module.scss";
 
-const Order = () => {
-  const status = 0;
+const Order = ({order}) => {
+  const status = order.status;
 
   const statusClass = (index) => {
     if (index - status < 1) return styles.done;
@@ -12,6 +15,7 @@ const Order = () => {
 
   return (
     <div className={styles.container}>
+      <HeadContent title="注文履歴"/>
       <div className={styles.left}>
         <div className={styles.row}>
           <table className={styles.table}>
@@ -26,16 +30,16 @@ const Order = () => {
             <tbody className={styles.tbody}>
               <tr className={styles.tr}>
                 <td className={styles.td}>
-                  <span className={styles.id}>198282478947</span>
+                  <span className={styles.id}>{order._id}</span>
                 </td>
                 <td className={styles.td}>
-                  <span className={styles.name}>高橋悟生</span>
+                  <span className={styles.name}>{order.customer}</span>
                 </td>
                 <td className={styles.td}>
-                  <span className={styles.address}>東京都</span>
+                  <span className={styles.address}>{order.address}</span>
                 </td>
                 <td className={styles.td}>
-                  <span className={styles.total}>1460円</span>
+                  <span className={styles.total}>{order.total}円</span>
                 </td>
               </tr>
             </tbody>
@@ -76,13 +80,13 @@ const Order = () => {
         <div className={styles.wrapper}>
           <h2 className={styles.title}>注文の合計金額</h2>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>小計：</b>1460円
+            <b className={styles.totalTextTitle}>小計：</b>{order.total}円
           </div>
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>割引：</b>０円
           </div>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>合計：</b>1460円
+            <b className={styles.totalTextTitle}>合計：</b>{order.total}円
           </div>
           <button disabled className={styles.button}>
             支払う
@@ -92,5 +96,16 @@ const Order = () => {
     </div>
   );
 };
+
+export const getServerSideProps = async ({params}) => {
+  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+
+  return {
+    props:{
+      order: res.data
+    }
+  };
+};
+
 
 export default Order;

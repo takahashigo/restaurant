@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  height: calc(100vh - 100px);
+  padding: 50px;
+  display: flex;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    padding: 0px;
+    height: auto;
+    font-size: 8px;
+  }
+  .item {
+    flex: 1;
+    @media screen and (width: 480px) {
+      
+    }
+    .table {
+      width: 100%;
+      border-spacing: 20px;
+      text-align: center;
+      .button {
+        border: none;
+        color: white;
+        padding: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+        &:first-child {
+          background-color: teal;
+          margin-right: 10px;
+          @media screen and (max-width: 480px) {
+            margin-right: 0px;
+          }
+        }
+        &:last-child {
+          background-color: crimson;
+        }
+      }
+    }
+  }
+}

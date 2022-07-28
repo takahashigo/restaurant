@@ -5,9 +5,12 @@
   @media screen and (max-width: 480px) {
     height: auto;
     text-align: center;
+    padding-bottom: 25px;
+    font-size: 16px;
   }
   .item {
-    flex: 1;
+    // margin-top: 50px;
+    flex: 3;
     position: relative;
     display: flex;
     &:nth-child(1) {
@@ -21,6 +24,8 @@
       justify-content: space-between;
       @media screen and (max-width: 480px) {
         flex-direction: column;
+        margin-top: 0px;
+        height: calc(100vh - 100px);
       }
     }
     .card {
@@ -28,14 +33,16 @@
       padding: 0px 20px;
       text-align: center;
       .title {
-        font-size: 18px;
+        font-size: 36px;
         color: #b7903c;
         @media screen and (max-width: 480px) {
           font-size: 30px;
         }
       }
       .text {
+        font-size: 24px;
         color: lightgray;
+        margin-bottom: 50px;
         @media screen and (max-width: 480px) {
           font-size: 20px;
         }

@@ -1,6 +1,10 @@
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import HeadContent from "../../components/Head";
+import { addProduct } from "../../redux/cartSlice";
 import styles from "../../styles/Product.module.scss";
 
 const ProductPage = ({ pizza }) => {
@@ -8,6 +12,13 @@ const ProductPage = ({ pizza }) => {
   const [size, setSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [extras, setExtras] = useState([]);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleClick = () => {
+    dispatch(addProduct({ ...pizza, quantity, price, extras }));
+    router.push("/cart");
+  };
 
   const changePrice = (number) => {
     setPrice(price + number);
@@ -32,10 +43,11 @@ const ProductPage = ({ pizza }) => {
     }
   };
 
-  console.log(extras);
+  // console.log(extras);
 
   return (
     <div className={styles.container}>
+      <HeadContent title="商品詳細" />
       <div className={styles.left}>
         <div className={styles.imgContainer}>
           <Image
@@ -89,8 +101,15 @@ const ProductPage = ({ pizza }) => {
             ))}
           </div>
           <div className={styles.add}>
-            <input type="number" defaultValue={1} className={styles.quantity}  onChange={(e) => setQuantity(e.target.value) }/>
-            <button className={styles.button}>Add to Cart</button>
+            <input
+              type="number"
+              defaultValue={1}
+              className={styles.quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+            <button className={`${styles.button}`} onClick={handleClick}>
+              <span className={styles.btn}>カートに入れる</span>
+            </button>
           </div>
         </div>
       </div>
@@ -115,7 +134,8 @@ export default ProductPage;
 // 商品ページはSSGを採用する
 // export const getStaticPaths = async () => {
 //   const res = await axios.get("http://localhost:3000/api/products/");
-//   const paths = res.data.map((pizza) => {
+//   console.log(res.data);
+//   const paths = res.data?.map((pizza) => {
 //     return {
 //       params: {
 //         id: pizza._id,
@@ -132,11 +152,10 @@ export default ProductPage;
 // export const getStaticProps = async (context) => {
 //   const { id } = context.params;
 //   const res = await axios.get(`http://localhost:3000/api/products/${id}`);
-
+//   console.log(res.data);
 //   return {
 //     props: {
 //       pizza: res.data
 //     },
 //   };
 // };
-

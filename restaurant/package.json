@@ -9,12 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^7.8.1",
+    "@reduxjs/toolkit": "^1.8.3",
+    "@stripe/stripe-js": "^1.32.0",
     "axios": "^0.27.2",
+    "cookie": "^0.5.0",
+    "cookies-next": "^2.1.1",
+    "js-cookie": "^3.0.1",
     "mongoose": "^6.4.6",
     "next": "12.2.3",
+    "nodemailer": "^6.7.7",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "^1.54.0"
+    "react-redux": "^8.0.2",
+    "react-stripe-checkout": "^2.6.3",
+    "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.54.0",
+    "stripe": "^9.15.0"
   },
   "devDependencies": {
     "eslint": "8.20.0",

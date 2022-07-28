@@ -1,47 +1,40 @@
 import Image from "next/image";
 import styles from "../styles/Footer.module.scss";
+import ContactForm from "./ContactForm";
 
 const Footer = () => {
   return (
     <div className={styles.container}>
       <div className={styles.item}>
-        <Image src="/img/bg.png" layout="fill" alt="" objectFit="cover" />
-      </div>
-      <div className={styles.item}>
         <div className={styles.card}>
-          <h2 className={styles.motto}>
-            美味いと言えば、ピザーラ。ピザーラと言えば美味い。
-          </h2>
-        </div>
-        <div className={styles.card}>
-          <h1 className={styles.title}>店舗情報</h1>
+          <h1 className={styles.title} id="info">店舗情報</h1>
           <p className={styles.text}>
-            1999 Pizzala #304,
+            2022 Pizzall 
             <br />
-            東京都, 111-1111
+            東京都, 777-7777
+            <br />
+            0120-111-2222
+          </p>
+          <p className={styles.text}>
+            2022 Pizzall 
+            <br />
+            東京都, 222-2222
             <br />
             0120-333-4444
           </p>
           <p className={styles.text}>
-            1999 Pizzala #304,
+            2022 Pizzall
             <br />
-            東京都, 111-1111
+            東京都, 333-3333
             <br />
-            0120-333-4444
+            0120-555-6666
           </p>
           <p className={styles.text}>
-            1999 Pizzala #304,
+            2022 Pizzall
             <br />
-            東京都, 111-1111
+            東京都, 444-4444
             <br />
-            0120-333-4444
-          </p>
-          <p className={styles.text}>
-            1999 Pizzala #304,
-            <br />
-            東京都, 111-1111
-            <br />
-            0120-333-4444
+            0120-777-8888
           </p>
         </div>
         <div className={styles.card}>
@@ -57,6 +50,9 @@ const Footer = () => {
             11:00 - 23:00
           </p>
         </div>
+      </div>
+      <div className={styles.item}>
+        <ContactForm />
       </div>
     </div>
   );

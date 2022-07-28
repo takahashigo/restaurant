@@ -1,0 +1,38 @@
+.container {
+  height: calc(100vh - 100px);
+  background-color: #d1411e;
+  overflow-x: hidden;
+  position: relative;
+}
+@media screen and (max-width: 480px) {
+  .container {
+    height: 50vh;
+  }
+}
+.container .arrowContainer {
+  position: absolute;
+  width: 5%;
+  height: 10%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+.container .arrowContainer:first-child {
+  left: 0;
+}
+.container .arrowContainer:last-child {
+  right: 0;
+}
+.container .wrapper {
+  width: 300vw;
+  height: 100%;
+  display: flex;
+  transition: all 1.5s ease-in-out;
+}
+.container .wrapper .imgContainer {
+  width: 100vw;
+  height: 100%;
+  position: relative;
+}/*# sourceMappingURL=Featured.module.css.map */

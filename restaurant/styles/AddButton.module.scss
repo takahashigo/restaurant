@@ -1,0 +1,15 @@
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .mainAddButton {
+    height: 50px;
+    width: 200px;
+    margin-top: 20px;
+    border: none;
+    background-color: teal;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+  }
+}

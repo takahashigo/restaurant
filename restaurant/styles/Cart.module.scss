@@ -82,6 +82,14 @@ $navCol: #d1411e;
           }
         }
       }
+      .deleteButton {
+        width: 60%;
+        color: white;
+        background-color: red;
+        border: none;
+        border-radius: 2px;
+        padding: 4px 0px;
+      }
     }
   }
   .right {
@@ -92,7 +100,7 @@ $navCol: #d1411e;
     }
     .wrapper {
       width: 90%;
-      max-height: 300px;
+      max-height: 350px;
       background-color: #333;
       border-radius: 8px;
       padding: 50px;
@@ -118,6 +126,22 @@ $navCol: #d1411e;
         margin-top: 20px;
         &:hover {
           opacity: 0.8;
+        }
+      }
+      .paymentMethods {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        .payButton {
+          width: 100%;
+          padding: 10px 5px;
+          cursor: pointer;
+          margin-bottom: 5px;
+          background-color: white;
+          color: teal;
+          font-weight: bold;
+          border-radius: 8px;
+          font-size: 16px;
         }
       }
     }
