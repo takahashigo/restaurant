@@ -8,6 +8,7 @@ import axios from "axios";
 import { deleteProduct, reset } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import HeadContent from "../components/Head";
+import Link from "next/link";
 
 //本番環境設定
 const API_URL =
@@ -86,19 +87,23 @@ const Cart = () => {
             {cart.products.map((product) => (
               <tr className={styles.tr} key={product._id}>
                 <td>
-                  <div className={styles.imgWrapper}>
-                    <div className={styles.imgContainer}>
-                      <Image
-                        src={product.img}
-                        layout="fill"
-                        objectFit="cover"
-                        alt="pizza"
-                      />
+                  <Link href={`/product/${product._id}`}>
+                    <div className={styles.imgWrapper}>
+                      <div className={styles.imgContainer}>
+                        <Image
+                          src={product.img}
+                          layout="fill"
+                          objectFit="contain"
+                          alt="pizza"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </td>
                 <td className={styles.td}>
-                  <span className={styles.name}>{product.title}</span>
+                  <Link href={`/product/${product._id}`}>
+                    <span className={styles.name}>{product.title}</span>
+                  </Link>
                 </td>
                 <td className={styles.td}>
                   <span className={styles.extras}>
