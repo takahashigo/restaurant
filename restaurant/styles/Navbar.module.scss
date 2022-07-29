@@ -14,18 +14,30 @@ $navCol: #d1411e;
     flex: 3;
     display: flex;
     align-items: center;
-    &:nth-child(1){
+    @media screen and (max-width: 480px) {
+      justify-content: center;
+    }
+    &:nth-child(1) {
       @media screen and (max-width: 480px) {
         flex: 3;
+        display: none;
       }
     }
-    &:nth-child(2){
+    &:nth-child(2) {
       flex: 5;
       width: 100%;
       // margin-left: 20px;
-      @media screen and (max-width: 480px) {
-        display: none;
-      }
+      // @media screen and (max-width: 480px) {
+      //   // display: none;
+      //   .list {
+      //     .link {
+      //       display: none;
+      //     }
+      //     li {
+      //       display: none;
+      //     }
+      //   }
+      // }
     }
     &:last-child {
       flex: 1;
@@ -42,7 +54,7 @@ $navCol: #d1411e;
     .texts {
       margin-left: 20px;
       color: white;
-      .text{
+      .text {
         &:first-child {
           font-size: 12px;
           font-weight: 500;
@@ -60,16 +72,27 @@ $navCol: #d1411e;
       justify-content: center;
       list-style: none;
       color: white;
+      @media screen and (max-width: 480px) {
+        .link {
+          display: none;
+        }
+      }
       .listItem {
         margin-right: 55px;
         font-weight: 500;
         cursor: pointer;
+        @media screen and (max-width: 480px) {
+          display: none;
+        }
       }
       .logo {
         margin-right: 50px;
         font-size: 42px;
         font-weight: normal;
         cursor: pointer;
+        @media screen and (max-width: 480px) {
+          margin-right: -50px;
+        }
       }
     }
     .cart {
@@ -92,5 +115,4 @@ $navCol: #d1411e;
       }
     }
   }
-
 }

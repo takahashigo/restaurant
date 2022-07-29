@@ -24,7 +24,7 @@ const Navbar = () => {
       </div>
       <div className={styles.item}>
         <ul className={styles.list}>
-          <Link href="/" passHref>
+          <Link href="/" passHref className={styles.link}>
             <li className={styles.listItem}>ホーム</li>
           </Link>
           <li className={styles.listItem}>
