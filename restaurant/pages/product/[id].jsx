@@ -7,6 +7,12 @@ import HeadContent from "../../components/Head";
 import { addProduct } from "../../redux/cartSlice";
 import styles from "../../styles/Product.module.scss";
 
+//本番環境設定
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.NEXT_PUBLIC_API_URL;
+
 const ProductPage = ({ pizza }) => {
   const [price, setPrice] = useState(pizza.prices[0]);
   const [size, setSize] = useState(0);
@@ -119,12 +125,6 @@ const ProductPage = ({ pizza }) => {
 
 // SSRの場合
 // export const getServerSideProps = async ({ params }) => {
-//   //本番環境設定
-//   const API_URL =
-//     process.env.NODE_ENV === "production"
-//       ? process.env.NEXT_PUBLIC_VERCEL_URL
-//       : process.env.NEXT_PUBLIC_API_URL;
-
 //   const res = await axios.get(
 //     `${API_URL}/products/${params.id}`
 //   );
@@ -140,11 +140,6 @@ export default ProductPage;
 
 // 商品ページはSSGを採用する場合
 export const getStaticPaths = async () => {
-  //本番環境設定
-  const API_URL =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_VERCEL_URL
-      : process.env.NEXT_PUBLIC_API_URL;
   const res = await axios.get(`${API_URL}/products/`);
   const paths = res.data?.map((pizza) => {
     return {
@@ -161,11 +156,6 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  //本番環境設定
-  const API_URL =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_VERCEL_URL
-      : process.env.NEXT_PUBLIC_API_URL;
   const { id } = context.params;
   const res = await axios.get(`${API_URL}/products/${id}`);
   return {

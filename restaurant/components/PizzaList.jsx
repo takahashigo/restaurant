@@ -3,7 +3,7 @@ import PizzaCard from "./PizzaCard";
 
 const PizzaList = ({ pizzaList }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="product">
       <h1 className={styles.title}>おすすめピザ一覧</h1>
       <p className={styles.desc}>
         当店は、幅広い層の方に食べていただけるよう、海鮮や肉、チーズ、野菜など様々なバリエーションに加え、さらにお手頃な価格に設定させていただきました。

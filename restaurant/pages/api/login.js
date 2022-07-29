@@ -1,4 +1,3 @@
-import cookie from "cookie";
 import { setCookie } from "cookies-next";
 // import { setCookie } from "nookies";
 

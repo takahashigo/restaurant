@@ -27,7 +27,9 @@ const Navbar = () => {
           <Link href="/" passHref>
             <li className={styles.listItem}>ホーム</li>
           </Link>
-          <li className={styles.listItem}>商品</li>
+          <li className={styles.listItem}>
+            <a href="#product">商品</a>
+          </li>
           <Link href="/" passHref>
             <span className={styles.logo}>Pizzall</span>
           </Link>

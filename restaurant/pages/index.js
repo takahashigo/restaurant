@@ -10,6 +10,12 @@ import PizzaList from "../components/PizzaList";
 // import { initialize } from "../redux/cartSlice";
 import styles from "../styles/Home.module.scss";
 
+//本番環境設定
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.NEXT_PUBLIC_API_URL;
+
 export default function Home({ pizzaList, admin }) {
   const [close, setClose] = useState(true);
   // const dispatch = useDispatch();
@@ -40,12 +46,6 @@ export default function Home({ pizzaList, admin }) {
 
 // SSRの場合
 export const getServerSideProps = async (context) => {
-  //本番環境設定
-  const API_URL =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_VERCEL_URL
-      : process.env.NEXT_PUBLIC_API_URL;
-
   const myCookie = parseCookies(context) || "";
   let admin = false;
 
