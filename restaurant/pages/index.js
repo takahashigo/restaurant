@@ -38,6 +38,7 @@ export default function Home({ pizzaList, admin }) {
   );
 }
 
+// SSRの場合
 export const getServerSideProps = async (context) => {
   //本番環境設定
   const API_URL =

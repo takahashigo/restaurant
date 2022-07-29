@@ -117,51 +117,60 @@ const ProductPage = ({ pizza }) => {
   );
 };
 
-export const getServerSideProps = async ({ params }) => {
+// SSRの場合
+// export const getServerSideProps = async ({ params }) => {
+//   //本番環境設定
+//   const API_URL =
+//     process.env.NODE_ENV === "production"
+//       ? process.env.NEXT_PUBLIC_VERCEL_URL
+//       : process.env.NEXT_PUBLIC_API_URL;
+
+//   const res = await axios.get(
+//     `${API_URL}/products/${params.id}`
+//   );
+
+//   return {
+//     props: {
+//       pizza: res.data,
+//     },
+//   };
+// };
+
+export default ProductPage;
+
+// 商品ページはSSGを採用する場合
+export const getStaticPaths = async () => {
   //本番環境設定
   const API_URL =
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_VERCEL_URL
       : process.env.NEXT_PUBLIC_API_URL;
+  const res = await axios.get(`${API_URL}/products/`);
+  const paths = res.data?.map((pizza) => {
+    return {
+      params: {
+        id: pizza._id,
+      },
+    };
+  });
 
-  const res = await axios.get(
-    `${API_URL}/products/${params.id}`
-  );
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
+export const getStaticProps = async (context) => {
+  //本番環境設定
+  const API_URL =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_VERCEL_URL
+      : process.env.NEXT_PUBLIC_API_URL;
+  const { id } = context.params;
+  const res = await axios.get(`${API_URL}/products/${id}`);
   return {
     props: {
       pizza: res.data,
     },
   };
 };
-
-export default ProductPage;
-
-// 商品ページはSSGを採用する場合
-// export const getStaticPaths = async () => {
-//   const res = await axios.get("http://localhost:3000/api/products/");
-//   console.log(res.data);
-//   const paths = res.data?.map((pizza) => {
-//     return {
-//       params: {
-//         id: pizza._id,
-//       },
-//     };
-//   });
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
-
-// export const getStaticProps = async (context) => {
-//   const { id } = context.params;
-//   const res = await axios.get(`http://localhost:3000/api/products/${id}`);
-//   console.log(res.data);
-//   return {
-//     props: {
-//       pizza: res.data
-//     },
-//   };
-// };
