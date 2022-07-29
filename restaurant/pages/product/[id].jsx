@@ -61,6 +61,7 @@ const ProductPage = ({ pizza }) => {
             alt="pizza"
             layout="fill"
             objectFit="contain"
+            priority={true}
           />
         </div>
       </div>
