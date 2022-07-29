@@ -54,7 +54,7 @@ const Index = ({ products, orders }) => {
         <table className={styles.table}>
           <thead className={styles.thead}>
             <tr className={styles.tr}>
-              <th>商品画像</th>
+              <th>商品</th>
               <th>商品ID</th>
               <th>商品名</th>
               <th>値段</th>
@@ -70,7 +70,7 @@ const Index = ({ products, orders }) => {
                     alt=""
                     width={50}
                     height={50}
-                    objectFit="cover"
+                    objectFit="contain"
                   />
                 </td>
                 <td>{pizza._id.slice(0, 6)}...</td>
@@ -82,7 +82,7 @@ const Index = ({ products, orders }) => {
                 <td>
                   {/* この編集ボタンでピザを編集できるようにする */}
                   <button
-                    className={styles.button}
+                    className={`${styles.button} ${styles.updateBtn}`}
                     onClick={() => setClose(false)}
                   >
                     編集
@@ -106,10 +106,10 @@ const Index = ({ products, orders }) => {
           <thead className={styles.thead}>
             <tr className={styles.tr}>
               <th>注文ID</th>
-              <th>お客様（氏名）</th>
-              <th>お支払額</th>
+              <th>お客様名</th>
+              <th>金額</th>
               <th>お支払い方法</th>
-              <th>状況</th>
+              <th>進捗</th>
               <th>編集</th>
             </tr>
           </thead>
