@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+長期インターンに参加する前に作成しました。
+題名：Pizzall
+ポートフォリオURL：https://pizzall.vercel.app
 
-## Getting Started
+このポートフォリオを作ろうと思ったきっかけは、あるピザ屋さんのサイトに訪れた際にそのサイトが余りにも使い辛かったからです。
+自分でよりユーザーが使いやすいように作ってみました。
+(決済のクレジットカード番号は4242424242424242をお使いください)
 
-First, run the development server:
+また、商品の在庫管理及び注文履歴状況を監視できる管理者サイトも作成したので、以下にURLを記載します。
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+URL: https://pizzall.vercel.app/admin/login
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ユーザーネームはadminを、パスワードは123456をお使いください。
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+写真はメインサイト(スマホ画面)です。
+管理者サイトもあるので訪れて頂けると幸いです。もちろん、パソコン画面にも対応しております。
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+下記はこのポートフォリオで取り組んだ内容です。少しでも興味があれば目を通して頂くと幸いです。
 
-To learn more about Next.js, take a look at the following resources:
+・工夫した点
+1)商品ページの更新が激しいページはSSRを採用し、商品詳細ページは更新頻度が少ないためSSGを採用し、ページ表示速度を向上
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2)本来はBFFで使用するNext.jsのapiフォルダーを用い、そこにRestAPIを作成し、一つのフレームワークでフルスタックなアプリに挑戦
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3)状態管理にReduxを採用し、storeの情報はブラウザのLocalStorageと同期し、リロードされてもカート情報が失われないように工夫
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+・デプロイ後自分や友達に使ってもらって改善した点
+1)LCP向上のため、ページの主要画像をpreloadし、ページ表示速度をさらに向上させました。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2)管理者がログイン後、再度管理者サイトのログインページに訪れた際に初期ログイン時にサーバーからCookieを送られているので、ブラウザにあるCookieに含まれるtoken情報から管理者かユーザーかを判別し、管理者の場合、ログイン情報を入力せずとも管理画面に遷移できるようにしました。また、管理者画面の更新は管理者のみ行えるようにしてあり、管理者は管理画面ではなく、サイトからでも商品を追加できるようにしました。
+
+
+・今後取り組もうとしていること
+1)アプリ全体をTypeScriptで書き換え、堅牢性の向上
+
+2)商品一覧ページを作成し、検索機能の追加
+
+3)ユーザーが注文履歴を確認できるようにする
+
+
+ここまで読んで頂き、有難うございました。
+少しでも興味を持って頂けたら幸いです。
